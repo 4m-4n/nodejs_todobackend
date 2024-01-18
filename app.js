@@ -14,17 +14,18 @@ export const app = express();
  });
 
 app.use(express.json());
-app.use("/api/v1/users", userrouter);
-app.use("/api/v1/task",taskrouter);
 app.use(cookieParser());
-app.get("/", (req, res) => {
-    res.send("niceee");
-});
-app.use(errormidware);
  app.use(cors({
      origin:[process.env.FRONTEND_URL],
      methods: ["GET", "POST", "PUT", "DELETE"],
      credentials:true,
  }))
+app.use("/api/v1/users", userrouter);
+app.use("/api/v1/task",taskrouter);
+app.get("/", (req, res) => {
+    res.send("niceee");
+});
+app.use(errormidware);
+
 //app.use(cors({origin:"*"}));
 
